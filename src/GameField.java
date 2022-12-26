@@ -3,10 +3,10 @@ public class GameField {
     private Cell[][] field = new Cell[8][8];
     private Figure figure;
     private String comment = "";
-    private int selectCellX;
     private int cellX;
     private int fNum = 1;
     private int moveFigureNum;
+    private Cell fID;
 
     public GameField() {
 
@@ -48,7 +48,6 @@ public class GameField {
         }
     }
 
-    //13 B 4
     public void move(int figureID, String cellSX, int cellY) {
         switch (cellSX) {
             case "A":
@@ -76,15 +75,10 @@ public class GameField {
                 cellX = 7;
                 break;
         }
-        for (int x = 0; x < field.length - 1; x++) {
-            for (int y = 0; y < field[x].length - 1; y++) {
-                if (field[x][y].getFigure() != null) {
-                    if (field[x][y].getFigure().getFigureNum() == figureID) {
-                        figureMove(x, y, cellY, cellX);
-                    }
-                }
-            }
-        }
+        findByID(figureID);
+        figureMove(fID.getCellY(), fID.getCellX(), cellY, cellX);
+        fID = null;
+        System.out.println(getComment());
     }
 
     public String getComment() {
@@ -101,7 +95,50 @@ public class GameField {
         } else System.out.println("Figure not found");
     }
 
+    private void findByID(int ID) {
+        for (int x = 0; x < field.length - 1; x++) {
+            for (int y = 0; y < field[x].length - 1; y++) {
+                if (field[x][y].getFigure() != null) {
+                    if (field[x][y].getFigure().getFigureNum() == ID) {
+                        fID = field[x][y];
+                    }
+                }
+            }
+        }
+    }
+
     public int getFigureNum() {
         return moveFigureNum;
+    }
+
+    public void info() {
+        String figureColor = "";
+        String line = "";
+        String color = "";
+        String figureID = "00";
+        System.out.println("+----+----+----+----+----+----+----+----+");
+        for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < 8; y++) {
+                if (field[x][y].getCellColor().equals("white")) {
+                    color = "w";
+                }else color = "b";
+                if (field[x][y].getFigure() != null) {
+
+                    if (field[x][y].getFigure().getFigureNum() <= 9){
+                        figureID = "0"+ field[x][y].getFigure().getFigureNum();
+                    }else figureID = Integer.toString(field[x][y].getFigure().getFigureNum());
+
+                    if (field[x][y].getFigure().getFigureColor().equals("white")) {
+                        figureColor = "w";
+                    } else figureColor = "b";
+                }else figureColor = "n";
+
+                line += color + "" + figureColor + figureID + "|";
+                figureID = "00";
+            }
+            System.out.println("|" + line);
+            line = "";
+            System.out.println("+----+----+----+----+----+----+----+----+");
+        }
     }
 }

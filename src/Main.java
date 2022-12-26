@@ -30,11 +30,12 @@ public class Main {
 
                 System.out.println(figureID + " go to " + moveX + " " + moveY);
                 gameField.move(figureID, moveX, moveY);
-                System.out.println(gameField.getComment());
                 System.out.println("moving figure " + gameField.getFigureNum());
             } else if (message.equals("field")) {
                 gameField.getField();
                 System.out.println("\n");
+            }else if(message.equals("info")){
+                gameField.info();
             } else {
                 System.out.println("This not command");
             }
