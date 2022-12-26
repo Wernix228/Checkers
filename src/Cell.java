@@ -11,7 +11,7 @@ public class Cell {
         this.color = color;
         this.figure = figure;
     }
-
+//no problems here
     public Cell(int x, int y, String color) {
         this(x, y, color, null);
     }

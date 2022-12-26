@@ -8,7 +8,7 @@ public class Figure {
         this.num = num;
         this.color = color;
     }
-
+//figure
     public int getFigureNum() {
         return num;
     }

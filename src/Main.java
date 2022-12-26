@@ -8,6 +8,7 @@ public class Main {
         System.out.println("write: \"help\"");
         while (scanner.hasNextLine()) {
             String message = scanner.nextLine();
+            //yey
             switch (message) {
                 case "help":
                     System.out.println("commands: ");
