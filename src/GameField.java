@@ -1,21 +1,20 @@
 public class GameField {
 
-    private Cell[][] field = new Cell[8][8];
-    private Figure figure;
+    private final Cell[][] field = new Cell[8][8];
     private String comment = "";
-    private int cellX;
-    private int fNum = 1;
     private int moveFigureNum;
     private Cell fID;
     private boolean canMoveX = false;
 
     public GameField() {
+        int fNum = 1;
 
         for (int x = 0; x < 8; x++) {
 
             for (int y = 0; y < 8; y++) {
 
                 if ((x % 2 == 0 && y % 2 == 1) || (x % 2 != 0 && y % 2 == 0)) {
+
 
                     if (x <= 2) {
                         field[x][y] = new Cell(y, x, "black", new Figure(fNum, "black"));
@@ -50,6 +49,7 @@ public class GameField {
     }
 
     public void move(int figureID, String cellSX, int cellY) {
+        int cellX;
         switch (cellSX) {
             case "A":
                 cellX = 0;
@@ -102,7 +102,7 @@ public class GameField {
 
     private void figureMove(int selectCellX, int selectCellY, int cellY, int cellX, Cell fMove) {
         if (field[selectCellX][selectCellY].getFigure() != null) {
-            figure = field[selectCellX][selectCellY].getFigure();
+            Figure figure = field[selectCellX][selectCellY].getFigure();
             moveFigureNum = field[selectCellX][selectCellY].getFigure().getFigureNum();
             if (canMove(fMove)) {
                 field[selectCellX][selectCellY].setFigure(null);
