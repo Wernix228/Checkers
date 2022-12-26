@@ -1,27 +1,27 @@
 public class Figure {
+    private final String color;
 
     private final int num;
-    private final String FigureColor;
-    private boolean Queen;
+    private boolean queen;
 
-    public Figure(int num, String figureColor) {
+    public Figure(int num, String color) {
         this.num = num;
-        FigureColor = figureColor;
+        this.color = color;
     }
 
     public int getFigureNum() {
         return num;
     }
 
-    public String getFigureColor() {
-        return FigureColor;
+    public String getColor() {
+        return color;
     }
 
     public boolean isQueen() {
-        return Queen;
+        return queen;
     }
 
-    public void setQueen(boolean queen) {
-        Queen = queen;
+    public void setQueen() {
+        this.queen = true;
     }
 }

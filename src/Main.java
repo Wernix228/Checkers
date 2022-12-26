@@ -23,7 +23,7 @@ public class Main {
                     System.out.println("\n");
                     break;
                 case "info":
-                    gameField.info();
+                    System.out.println(gameField.info());
                     break;
                 default:
                     System.out.println("This not command");

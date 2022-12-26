@@ -1,41 +1,39 @@
 public class Cell {
 
-    private Figure figure = null;
-    private final int cellX;
-    private final int cellY;
-    private final String cellColor;
+    private Figure figure;
+    private final int x;
+    private final int y;
+    private final String color;
 
-    public Cell(int cellX, int cellY, String cellColor, Figure figure) {
-        this.cellX = cellX;
-        this.cellY = cellY;
-        this.cellColor = cellColor;
+    public Cell(int x, int y, String color, Figure figure) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
         this.figure = figure;
     }
 
-    public Cell(int cellX, int cellY, String cellColor) {
-        this.cellX = cellX;
-        this.cellY = cellY;
-        this.cellColor = cellColor;
+    public Cell(int x, int y, String color) {
+        this(x, y, color, null);
     }
 
     public Figure getFigure() {
         return figure;
     }
 
-    public int getCellX() {
-        return cellX;
+    public int getX() {
+        return x;
     }
 
-    public int getCellY() {
-        return cellY;
+    public int getY() {
+        return y;
     }
 
     public void setFigure(Figure figure) {
         this.figure = figure;
     }
 
-    public String getCellColor() {
-        return cellColor;
+    public String getColor() {
+        return color;
     }
 
 }
