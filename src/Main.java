@@ -8,13 +8,13 @@ public class Main {
         System.out.println("write: \"help\"");
         while (scanner.hasNextLine()) {
             String message = scanner.nextLine();
-            //yeyyy
+            //yeyy
             switch (message) {
                 case "help":
                     System.out.println("commands: ");
-                    System.out.println("\"field\" - To show the playing field");
-                    System.out.println("\"move\" - To move a figure");
-                    System.out.println("\"info\" - To show the info field");
+                    System.out.println("\"field\" -  show the playing field");
+                    System.out.println("\"move\" -  move a figure");
+                    System.out.println("\"info\" - show the info field");
                     break;
                 case "move":
                     move(scanner,gameField);
@@ -27,13 +27,13 @@ public class Main {
                     System.out.println(gameField.info());
                     break;
                 default:
-                    System.out.println("This not command");
+                    System.out.println("This is not a command");
                     break;
             }
         }
     }
     private static void move(Scanner scanner, GameField gameField){
-        System.out.println("Enter coordinates for movement example > (13 B 5)");
+        System.out.println("Enter coordinates for movement, example > (13 B 5)");
 
         String move = scanner.nextLine();
         String[] words = move.split(" ");
@@ -45,6 +45,6 @@ public class Main {
         if (gameField.isCanMoveX()) {
             System.out.println(figureID + " go to " + moveX + " " + moveY);
             System.out.println("moving figure " + gameField.getFigureNum());
-        } else System.out.println("Figure not move: \n" + gameField.getComment());
+        } else System.out.println("Figure cannot move: \n" + gameField.getComment());
     }
 }
