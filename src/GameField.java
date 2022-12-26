@@ -141,7 +141,7 @@ public class GameField {
             } else return false;
         } else return false;
     }
-//idk what it does pls help
+//idk what it does pls helpp
     public boolean isCanMoveX() {
         return canMoveX;
     }
