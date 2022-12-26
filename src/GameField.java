@@ -116,8 +116,10 @@ public class GameField {
         String line = "";
         String color = "";
         String figureID = "00";
-        System.out.println("+----+----+----+----+----+----+----+----+");
+        int lineNum = 8;
+        System.out.println(" +----+----+----+----+----+----+----+----+");
         for (int x = 0; x < 8; x++) {
+            
             for (int y = 0; y < 8; y++) {
                 if (field[x][y].getCellColor().equals("white")) {
                     color = "w";
@@ -136,9 +138,11 @@ public class GameField {
                 line += color + "" + figureColor + figureID + "|";
                 figureID = "00";
             }
-            System.out.println("|" + line);
+            System.out.println(lineNum + "|" + line);
             line = "";
-            System.out.println("+----+----+----+----+----+----+----+----+");
+            lineNum--;
+            System.out.println(" +----+----+----+----+----+----+----+----+");
         }
+        System.out.println("   A    B    C    D    E    F    G    H");
     }
 }
