@@ -7,6 +7,7 @@ public class GameField {
     private int fNum = 1;
     private int moveFigureNum;
     private Cell fID;
+    private boolean canMoveX = false;
 
     public GameField() {
 
@@ -52,31 +53,45 @@ public class GameField {
         switch (cellSX) {
             case "A":
                 cellX = 0;
+                canMoveX = true;
                 break;
             case "B":
                 cellX = 1;
+                canMoveX = true;
                 break;
             case "C":
                 cellX = 2;
+                canMoveX = true;
                 break;
             case "D":
                 cellX = 3;
+                canMoveX = true;
                 break;
             case "E":
                 cellX = 4;
+                canMoveX = true;
                 break;
             case "F":
                 cellX = 5;
+                canMoveX = true;
                 break;
             case "G":
                 cellX = 6;
+                canMoveX = true;
                 break;
             case "H":
                 cellX = 7;
+                canMoveX = true;
+                break;
+            default:
+                comment = "Lol";
+                findByID(figureID);
+                cellX = fID.getCellX();
+                canMoveX = false;
                 break;
         }
         findByID(figureID);
-        figureMove(fID.getCellY(), fID.getCellX(), cellY, cellX);
+        figureMove(fID.getCellY(), fID.getCellX(), cellY, cellX, fID);
         fID = null;
         System.out.println(getComment());
     }
@@ -85,14 +100,17 @@ public class GameField {
         return comment;
     }
 
-    private void figureMove(int selectCellX, int selectCellY, int cellY, int cellX) {
+    private void figureMove(int selectCellX, int selectCellY, int cellY, int cellX, Cell fMove) {
         if (field[selectCellX][selectCellY].getFigure() != null) {
             figure = field[selectCellX][selectCellY].getFigure();
             moveFigureNum = field[selectCellX][selectCellY].getFigure().getFigureNum();
-            field[selectCellX][selectCellY].setFigure(null);
-            field[--cellY][cellX].setFigure(figure);
-            figure = null;
-        } else System.out.println("Figure not found");
+            if (canMove(fMove)) {
+                field[selectCellX][selectCellY].setFigure(null);
+                field[--cellY][cellX].setFigure(figure);
+                figure = null;
+            } else comment = "?";
+        } else comment = "Figure not found";
+        System.out.println(comment);
     }
 
     private void findByID(int ID) {
@@ -119,21 +137,21 @@ public class GameField {
         int lineNum = 1;
         System.out.println(" +----+----+----+----+----+----+----+----+");
         for (int x = 0; x < 8; x++) {
-            
+
             for (int y = 0; y < 8; y++) {
                 if (field[x][y].getCellColor().equals("white")) {
                     color = "w";
-                }else color = "b";
+                } else color = "b";
                 if (field[x][y].getFigure() != null) {
 
-                    if (field[x][y].getFigure().getFigureNum() <= 9){
-                        figureID = "0"+ field[x][y].getFigure().getFigureNum();
-                    }else figureID = Integer.toString(field[x][y].getFigure().getFigureNum());
+                    if (field[x][y].getFigure().getFigureNum() <= 9) {
+                        figureID = "0" + field[x][y].getFigure().getFigureNum();
+                    } else figureID = Integer.toString(field[x][y].getFigure().getFigureNum());
 
                     if (field[x][y].getFigure().getFigureColor().equals("white")) {
                         figureColor = "w";
                     } else figureColor = "b";
-                }else figureColor = "n";
+                } else figureColor = "n";
 
                 line += color + "" + figureColor + figureID + "|";
                 figureID = "00";
@@ -144,5 +162,15 @@ public class GameField {
             System.out.println(" +----+----+----+----+----+----+----+----+");
         }
         System.out.println("   A    B    C    D    E    F    G    H");
+    }
+
+    private boolean canMove(Cell cID) {
+        if ((cID.getCellX() < 7 || cID.getCellX() >= 0) && canMoveX) {
+            return true;
+        } else return false;
+    }
+
+    public boolean isCanMoveX() {
+        return canMoveX;
     }
 }

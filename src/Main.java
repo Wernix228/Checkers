@@ -29,13 +29,15 @@ public class Main {
                 moveX = words[1];
                 moveY = Integer.parseInt(words[2]);
 
-                System.out.println(figureID + " go to " + moveX + " " + moveY);
                 gameField.move(figureID, moveX, moveY);
-                System.out.println("moving figure " + gameField.getFigureNum());
+                if (gameField.isCanMoveX()) {
+                    System.out.println(figureID + " go to " + moveX + " " + moveY);
+                    System.out.println("moving figure " + gameField.getFigureNum());
+                } else System.out.println("Figure not move: \n" + gameField.getComment());
             } else if (message.equals("field")) {
                 gameField.getField();
                 System.out.println("\n");
-            }else if(message.equals("info")){
+            } else if (message.equals("info")) {
                 gameField.info();
             } else {
                 System.out.println("This not command");
