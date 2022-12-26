@@ -19,6 +19,7 @@ public class Main {
                 System.out.println("commands: ");
                 System.out.println("\"field\" - To show the playing field");
                 System.out.println("\"move\" - To move a figure");
+                System.out.println("\"info\" - To show the info field");
             } else if (message.equals("move")) {
                 System.out.println("Enter coordinates for movement example > (13 B 4)");
 

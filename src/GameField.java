@@ -33,7 +33,7 @@ public class GameField {
         }
     }
 
-    public void getField() {
+    public void info() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 System.out.print("CellX = " + field[i][j].getCellX() + " ");
@@ -85,12 +85,12 @@ public class GameField {
         return comment;
     }
 
-    private void figureMove(int selectCellX, int selectCellY, int cellX, int cellY) {
+    private void figureMove(int selectCellX, int selectCellY, int cellY, int cellX) {
         if (field[selectCellX][selectCellY].getFigure() != null) {
             figure = field[selectCellX][selectCellY].getFigure();
             moveFigureNum = field[selectCellX][selectCellY].getFigure().getFigureNum();
             field[selectCellX][selectCellY].setFigure(null);
-            field[cellX][cellY].setFigure(figure);
+            field[--cellY][cellX].setFigure(figure);
             figure = null;
         } else System.out.println("Figure not found");
     }
@@ -111,12 +111,12 @@ public class GameField {
         return moveFigureNum;
     }
 
-    public void info() {
+    public void getField() {
         String figureColor = "";
         String line = "";
         String color = "";
         String figureID = "00";
-        int lineNum = 8;
+        int lineNum = 1;
         System.out.println(" +----+----+----+----+----+----+----+----+");
         for (int x = 0; x < 8; x++) {
             
@@ -140,7 +140,7 @@ public class GameField {
             }
             System.out.println(lineNum + "|" + line);
             line = "";
-            lineNum--;
+            lineNum++;
             System.out.println(" +----+----+----+----+----+----+----+----+");
         }
         System.out.println("   A    B    C    D    E    F    G    H");
