@@ -1,7 +1,7 @@
 public class Figure {
 
-    private int num = 1000;
-    private String FigureColor;
+    private final int num;
+    private final String FigureColor;
     private boolean Queen;
 
     public Figure(int num, String figureColor) {
@@ -15,10 +15,6 @@ public class Figure {
 
     public String getFigureColor() {
         return FigureColor;
-    }
-
-    public void setFigureColor(String figureColor) {
-        FigureColor = figureColor;
     }
 
     public boolean isQueen() {

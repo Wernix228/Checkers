@@ -149,9 +149,9 @@ public class GameField {
                     } else figureID = Integer.toString(field[x][y].getFigure().getFigureNum());
 
                     if (field[x][y].getFigure().getFigureColor().equals("white")) {
-                        figureColor = "w";
-                    } else figureColor = "b";
-                } else figureColor = "n";
+                        figureColor = "W";
+                    } else figureColor = "B";
+                } else figureColor = "N";
 
                 line += color + "" + figureColor + figureID + "|";
                 figureID = "00";
@@ -165,8 +165,12 @@ public class GameField {
     }
 
     private boolean canMove(Cell cID) {
-        if ((cID.getCellX() < 7 || cID.getCellX() >= 0) && canMoveX) {
-            return true;
+        if ((cID.getCellX() < 7 && cID.getCellX() >= 0) && canMoveX) {
+            if(cID.getFigure().isQueen()){
+                return true;
+            }else if (cID.getCellY() >= 0 && cID.getCellY() < 7){
+                return true;
+            }else return false;
         } else return false;
     }
 
